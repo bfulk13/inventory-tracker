@@ -9,12 +9,19 @@ const shoes = [
     {
         id: 1,
         brand: `Jordan 6 Carmine`,
-        releaseInfo: `OG 2014`,
+        releaseInfo: `2014`,
         purchaseInfo: `eBay, 2016`,
         marketValue: `$339`
+    },
+    {
+        id: 2,
+        brand: `Jordan 12 Flu Game`,
+        releaseInfo: `OG 1997, Retro 2016`,
+        purchaseInfo: `stockx.com, 2016`,
+        marketValue: `$310`
     }
 ];
-let id = 2;
+let id = 3;
 
 //  FUNCTIONALITY TO SERVER //
 module.exports = {
