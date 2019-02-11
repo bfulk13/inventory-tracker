@@ -23,9 +23,7 @@ class App extends Component {
   }
 
   handleSearch = (val) => {
-    this.setState({
-        input: val
-    })
+    this.setState({ input: val })
 }
 
   handleBrand(val){
@@ -105,39 +103,48 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Hero className="hero"/> <br />
-        <Search 
-          handleSearch={this.handleSearch}
-        /> <br />
-        <input 
-          className="inputAdd"
-          placeholder="Add Shoe Brand-Model"
-          onChange={(e) => this.handleBrand(e.target.value)}
-          value={this.state.brand}
-        />
-        <input 
-          className="inputAdd"
-          placeholder="Add release date info"
-          onChange={(e) => this.handleReleaseDate(e.target.value)}
-          value={this.state.releaseInfo}
-        />
-        <input 
-          className="inputAdd"
-          placeholder="Add purchase info"
-          onChange={(e) => this.handlePurchaseInfo(e.target.value)}
-          value={this.state.purchaseInfo}
-        />
-        <input 
-          className="inputAdd"
-          placeholder="Add market value info"
-          onChange={(e) => this.handleMarketValue(e.target.value)}
-          value={this.state.marketValue}
-        />
-        <button onClick={() => this.addShoe(brand,releaseInfo,purchaseInfo,marketValue)}>Add Shoe</button>
-        <br /><br />
-        {filteredShoes}
-        <br /> <br /> <br />
-        <Footer />
+        <div className="background">
+          <div className="hero">
+            <Hero />
+          </div>
+          <div className="search">
+          <Search 
+            handleSearch={this.handleSearch}
+          /> <br />
+          </div>
+          
+          <input 
+            className="inputAdd"
+            placeholder="Add Shoe Brand-Model"
+            onChange={(e) => this.handleBrand(e.target.value)}
+            value={this.state.brand}
+          />
+          <input 
+            className="inputAdd"
+            placeholder="Add release date info"
+            onChange={(e) => this.handleReleaseDate(e.target.value)}
+            value={this.state.releaseInfo}
+          />
+          <input 
+            className="inputAdd"
+            placeholder="Add purchase info"
+            onChange={(e) => this.handlePurchaseInfo(e.target.value)}
+            value={this.state.purchaseInfo}
+          />
+          <input 
+            className="inputAdd"
+            placeholder="Add market value info"
+            onChange={(e) => this.handleMarketValue(e.target.value)}
+            value={this.state.marketValue}
+          />
+          <button onClick={() => this.addShoe(brand,releaseInfo,purchaseInfo,marketValue)}>Add Shoe</button>
+          <br /><br />
+          <div className="shoeCard">{filteredShoes}</div>
+          <br /> <br /> 
+          <div className="footer">
+            <Footer />
+          </div>
+        </div>  
       </div>
     );
   }
