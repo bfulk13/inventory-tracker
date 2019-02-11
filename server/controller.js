@@ -45,12 +45,13 @@ module.exports = {
     // PUT REQUEST
     updateShoes: (req,res) => {
         const {id} = req.params;
-        const {releaseInfo,marketValue} = req.body;
+        const {releaseInfo,purchaseInfo,marketValue} = req.body;
 
         let index = shoes.findIndex(shoe => shoe.id == id);
         let foundShoe = shoes[index];
 
         foundShoe.releaseInfo = releaseInfo || foundShoe.releaseInfo
+        foundShoe.purchaseInfo = purchaseInfo || foundShoe.purchaseInfo
         foundShoe.marketValue = marketValue || foundShoe.marketValue
 
         shoes.splice(index,1,foundShoe);

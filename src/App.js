@@ -17,9 +17,16 @@ class App extends Component {
       brand: ``,
       releaseInfo: ``,
       purchaseInfo: ``,
-      marketValue: ``
+      marketValue: ``,
+      input: ``
     }
   }
+
+  handleSearch = (val) => {
+    this.setState({
+        input: val
+    })
+}
 
   handleBrand(val){
     this.setState({ brand: val })
@@ -58,6 +65,7 @@ class App extends Component {
   }
 
   updateShoe = (id, releaseInfo, purchaseInfo, marketValue) => {
+    console.log(releaseInfo, purchaseInfo, marketValue)
     axios.put(`/api/shoe/${id}`, {releaseInfo,purchaseInfo,marketValue}).then(res => {
       this.setState({
         shoes: res.data,
@@ -83,7 +91,7 @@ class App extends Component {
 
   render() {
     const {brand,releaseInfo,purchaseInfo,marketValue} = this.state
-    let mappedShoes = this.state.shoes.map(shoe => {
+    let filteredShoes = this.state.shoes.filter(shoe => shoe.brand.toLowerCase().includes(this.state.input.toLowerCase())).map(shoe => {
       return(
         <Shoe 
           key={shoe.id}
@@ -97,34 +105,38 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Hero />
+        <Hero className="hero"/> <br />
         <Search 
-          shoes={this.state.shoes}
-        />
+          handleSearch={this.handleSearch}
+        /> <br />
         <input 
+          className="inputAdd"
           placeholder="Add Shoe Brand-Model"
           onChange={(e) => this.handleBrand(e.target.value)}
           value={this.state.brand}
         />
         <input 
+          className="inputAdd"
           placeholder="Add release date info"
           onChange={(e) => this.handleReleaseDate(e.target.value)}
           value={this.state.releaseInfo}
         />
         <input 
+          className="inputAdd"
           placeholder="Add purchase info"
           onChange={(e) => this.handlePurchaseInfo(e.target.value)}
           value={this.state.purchaseInfo}
         />
         <input 
+          className="inputAdd"
           placeholder="Add market value info"
           onChange={(e) => this.handleMarketValue(e.target.value)}
           value={this.state.marketValue}
         />
         <button onClick={() => this.addShoe(brand,releaseInfo,purchaseInfo,marketValue)}>Add Shoe</button>
-        {mappedShoes}
-        <br />
-        <br />
+        <br /><br />
+        {filteredShoes}
+        <br /> <br /> <br />
         <Footer />
       </div>
     );
