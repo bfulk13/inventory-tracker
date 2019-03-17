@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   updateShoe = (id, releaseInfo, purchaseInfo, marketValue) => {
-    console.log(releaseInfo, purchaseInfo, marketValue)
     axios.put(`/api/shoe/${id}`, {releaseInfo,purchaseInfo,marketValue}).then(res => {
       this.setState({
         shoes: res.data,
@@ -112,7 +111,6 @@ class App extends Component {
             handleSearch={this.handleSearch}
           /> <br />
           </div>
-          
           <input 
             className="inputAdd"
             placeholder="Add Shoe Brand-Model"
